@@ -25,6 +25,14 @@ public class Aluno extends Usuario {
 	public void setDtVinculo(Date dtVinculo) {
 		this.dtVinculo = dtVinculo;
 	}
-	
 
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+	
+	
 }

@@ -24,7 +24,7 @@ public class Disciplina {
 	@ManyToOne
 	private Curso curso;
 
-	@OneToMany(mappedBy = "turma")
+	@OneToMany(mappedBy = "disciplina")
 	private List<Turma> turmas;
 
 	public int getId() {
@@ -51,4 +51,21 @@ public class Disciplina {
 		this.area = area;
 	}
 
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
+
+	
 }

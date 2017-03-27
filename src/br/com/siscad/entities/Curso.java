@@ -23,7 +23,7 @@ public class Curso {
 	@OneToMany(mappedBy = "curso")//o Aluno tem que informar a qual curso ele pertence. Isso deve ser feito na hora de criar o aluno. cirar aluno e no aluno.setCurso(objeto curso)
 	private List<Aluno> alunos;
 
-	@ManyToMany(mappedBy = "curso")
+	@ManyToMany(mappedBy = "cursos")
 	private List<Professor> professores;
 
 	@OneToMany(mappedBy = "curso")
@@ -52,5 +52,31 @@ public class Curso {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+	
+	
 
 }
