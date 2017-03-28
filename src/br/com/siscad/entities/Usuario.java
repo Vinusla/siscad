@@ -9,11 +9,11 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
+public abstract class Usuario extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	protected Long id;
 	private String login;
 	private String senha;
 	private String nome;
@@ -113,5 +113,6 @@ public abstract class Usuario {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
 
 }

@@ -33,6 +33,18 @@ public class Aluno extends Usuario {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
+
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	@Override
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

@@ -48,6 +48,18 @@ public class Professor extends Usuario {
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
+
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
