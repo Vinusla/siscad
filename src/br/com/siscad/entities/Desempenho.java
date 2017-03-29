@@ -14,7 +14,7 @@ public class Desempenho {
 	private int id;
 	@ManyToOne
 	private Aluno aluno;
-	@OneToMany
+	@OneToMany(mappedBy = "desempenho")
 	private List<Nota> notas;
 	@ManyToOne
 	private Turma turma;

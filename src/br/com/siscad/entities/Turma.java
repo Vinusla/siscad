@@ -1,10 +1,13 @@
 package br.com.siscad.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -13,14 +16,14 @@ import javax.persistence.SequenceGenerator;
 public class Turma extends AbstractEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turma")	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turma")
 	private int id;
 	private String semestre;
 	private int ano;
 
 	@ManyToOne
 	private Disciplina disciplina;
-	
+
 	@ManyToOne
 	private Professor professor;
 
@@ -48,14 +51,6 @@ public class Turma extends AbstractEntity {
 		this.ano = ano;
 	}
 
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
 	public Professor getProfessor() {
 		return professor;
 	}
@@ -64,7 +59,14 @@ public class Turma extends AbstractEntity {
 		this.professor = professor;
 	}
 
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
 	
 	
-	
+
 }

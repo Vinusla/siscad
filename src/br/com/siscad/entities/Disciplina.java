@@ -65,7 +65,8 @@ public class Disciplina {
 
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
-	}
+	}	
 
+	
 	
 }

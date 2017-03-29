@@ -12,6 +12,7 @@ import javax.persistence.TemporalType;
 public class Aluno extends Usuario {
 	
 	
+	
 	@ManyToOne
 	private Curso curso;
 	

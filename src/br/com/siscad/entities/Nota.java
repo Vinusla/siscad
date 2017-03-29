@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -17,6 +18,9 @@ public class Nota extends AbstractEntity {
 	private float nota;
 	private float peso;
 
+	@ManyToOne
+	public Desempenho desempenho;
+	
 	public int getUnidade() {
 		return unidade;
 	}
