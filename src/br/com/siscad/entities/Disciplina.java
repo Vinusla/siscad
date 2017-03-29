@@ -21,7 +21,7 @@ public class Disciplina extends AbstractEntity {
 	private String nome;
 	private String area;
 
-	@ManyToOne
+	@ManyToOne(mappedBy = "cursos")
 	private List<Curso> cursos;
 	
 
