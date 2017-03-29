@@ -15,7 +15,7 @@ public class Menu {
 		int opt=1, opt2;
 		
 		Scanner scan= new Scanner(System.in);
-		
+	
 		PrintMenuPrincipal();
 		
 		while (opt!=0){

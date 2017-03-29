@@ -22,7 +22,8 @@ public class Disciplina extends AbstractEntity {
 	private String area;
 
 	@ManyToOne
-	private Curso curso;
+	private List<Curso> cursos;
+	
 
 	@OneToMany(mappedBy = "disciplina")
 	private List<Turma> turmas;
@@ -51,14 +52,13 @@ public class Disciplina extends AbstractEntity {
 		this.area = area;
 	}
 
-	public Curso getCurso() {
-		return curso;
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
-
 	public List<Turma> getTurmas() {
 		return turmas;
 	}

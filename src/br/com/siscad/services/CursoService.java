@@ -6,9 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.mchange.v2.resourcepool.ResourcePool.Manager;
+
 import br.com.siscad.dao.CursoDAO;
 import br.com.siscad.entities.Curso;
 import br.com.siscad.entities.Professor;
+import br.com.siscad.entities.Disciplina;;
+
 
 public class CursoService {
 	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
@@ -104,6 +108,26 @@ public class CursoService {
 	
 	}
 	
+	public static void inserirDisciplina(Disciplina disciplina, Curso curso){
+			EntityManager manager = fac.createEntityManager();
+		try{
+			manager.getTransaction().begin();
+			CursoDAO dao = new CursoDAO(manager);
+			curso.setDisciplinas(new ArrayList<>());
+			curso.getDisciplinas().add(disciplina);
+			
+			disciplina.setCursos(new ArrayList<>());
+			disciplina.getCursos().add(curso);
+			dao.atualizar(curso);
+			manager.getTransaction().commit();
+		}catch (Exception e){
+			System.out.println("Disciplina não pode ser inserida no curso!");
+			manager.getTransaction().rollback();
+		}finally{
+			manager.close();
+		}
+
+	}
 	
 	
 	
