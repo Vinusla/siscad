@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 @SequenceGenerator(name = "turma", sequenceName = "Turma_name", allocationSize = 1)
 
-public class Turma {
+public class Turma extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turma")	
@@ -24,8 +24,8 @@ public class Turma {
 	@ManyToOne
 	private Professor professor;
 
-	public int getId() {
-		return id;
+	public Long getId() {
+		return (long) id;
 	}
 
 	public void setId(int id) {

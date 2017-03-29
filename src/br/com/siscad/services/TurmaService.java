@@ -4,19 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.siscad.dao.AlunoDAO;
-import br.com.siscad.entities.Aluno;
+import br.com.siscad.dao.TurmaDAO;
+import br.com.siscad.entities.Turma;
 
-public class AlunoService {
+public class TurmaService {
 	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
 	
-	public static void MatriculaAluno(Aluno aluno){
+	public static void CadastrarTurma(Turma Turma){
 
 		EntityManager manager = fac.createEntityManager();
 		try{
 			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
-			dao.inserir(aluno);
+			TurmaDAO dao = new TurmaDAO(manager);
+			dao.inserir(Turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -28,13 +28,13 @@ public class AlunoService {
 	}
 	
 	
-	public static Aluno buscarAlunoPorId(Long id){
-		Aluno aluno = null;
+	public static Turma buscarTurma(Long id){
+		Turma Turma = null;
 		EntityManager manager = fac.createEntityManager();
 		manager.getTransaction().begin();
 		try{
-			AlunoDAO dao = new AlunoDAO(manager);
-			aluno = dao.buscarPorId(id);
+			TurmaDAO dao = new TurmaDAO(manager);
+			Turma = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
 			e.printStackTrace();
@@ -42,16 +42,16 @@ public class AlunoService {
 		finally{
 			manager.close();
 		}
-		return aluno;
+		return Turma;
 	
 	}
 	
-	public static void AlterarAluno(Aluno aluno){
+	public static void AlterarTurma(Turma Turma){
 		EntityManager manager = fac.createEntityManager();
 		try{
 			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
-			dao.atualizar(aluno);
+			TurmaDAO dao = new TurmaDAO(manager);
+			dao.atualizar(Turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -62,15 +62,15 @@ public class AlunoService {
 	
 	}
 	
-	public static void RemoverAluno(Aluno aluno){
+	public static void RemoverTurma(Turma Turma){
 		EntityManager manager = fac.createEntityManager();
 		try{
 			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
-			dao.excluir(aluno);
+			TurmaDAO dao = new TurmaDAO(manager);
+			dao.excluir(Turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Ocorreu um erro durante a exclusão do aluno!");
+			System.out.println("Turma não removida!");
 			manager.getTransaction().rollback();
 		}
 		finally{
@@ -80,3 +80,4 @@ public class AlunoService {
 	}
 	
 }
+

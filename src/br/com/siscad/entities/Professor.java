@@ -11,7 +11,7 @@ public class Professor extends Usuario {
 	private String areaAtuacao;
 	private String titulacao;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "professores")
 	private List<Curso> cursos;
 	
 	@OneToMany(mappedBy = "professor")

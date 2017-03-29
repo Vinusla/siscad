@@ -4,19 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.siscad.dao.AlunoDAO;
-import br.com.siscad.entities.Aluno;
+import br.com.siscad.dao.ProfessorDAO;
+import br.com.siscad.entities.Professor;
 
-public class AlunoService {
+public class ProfessorService {
 	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
 	
-	public static void MatriculaAluno(Aluno aluno){
+	public static void CadastraProfessor(Professor professor){
 
 		EntityManager manager = fac.createEntityManager();
 		try{
 			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
-			dao.inserir(aluno);
+			ProfessorDAO dao = new ProfessorDAO(manager);
+			dao.inserir(professor);
 			manager.getTransaction().commit();
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -28,13 +28,13 @@ public class AlunoService {
 	}
 	
 	
-	public static Aluno buscarAlunoPorId(Long id){
-		Aluno aluno = null;
+	public static Professor buscarProfessorPorId(Long id){
+		Professor professor = null;
 		EntityManager manager = fac.createEntityManager();
 		manager.getTransaction().begin();
 		try{
-			AlunoDAO dao = new AlunoDAO(manager);
-			aluno = dao.buscarPorId(id);
+			ProfessorDAO dao = new ProfessorDAO(manager);
+			professor = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
 			e.printStackTrace();
@@ -42,16 +42,16 @@ public class AlunoService {
 		finally{
 			manager.close();
 		}
-		return aluno;
+		return professor;
 	
 	}
 	
-	public static void AlterarAluno(Aluno aluno){
+	public static void AlterarProfessor(Professor professor){
 		EntityManager manager = fac.createEntityManager();
 		try{
 			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
-			dao.atualizar(aluno);
+			ProfessorDAO dao = new ProfessorDAO(manager);
+			dao.atualizar(professor);
 			manager.getTransaction().commit();
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -62,15 +62,15 @@ public class AlunoService {
 	
 	}
 	
-	public static void RemoverAluno(Aluno aluno){
+	public static void RemoverProfessor(Professor professor){
 		EntityManager manager = fac.createEntityManager();
 		try{
 			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
-			dao.excluir(aluno);
+			ProfessorDAO dao = new ProfessorDAO(manager);
+			dao.excluir(professor);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Ocorreu um erro durante a exclusão do aluno!");
+			System.out.println("Ocorreu um erro durante a exclusão do professor!");
 			manager.getTransaction().rollback();
 		}
 		finally{

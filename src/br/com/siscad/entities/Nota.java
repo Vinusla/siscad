@@ -8,7 +8,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "nota", sequenceName = "nota_name", allocationSize = 1)
-public class Nota {
+public class Nota extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nota")	
@@ -41,8 +41,8 @@ public class Nota {
 		this.peso = peso;
 	}
 
-	public int getId() {
-		return id;
+	public Long getId() {
+		return (long) id;
 	}
 
 	public void setId(int id) {
