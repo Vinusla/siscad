@@ -10,7 +10,7 @@ import br.com.siscad.entities.Disciplina;
 public class DisciplinaService {
 	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
 	
-	public static void CadastraDisciplina(Disciplina disciplina){
+	public static void CadastrarDisciplina(Disciplina disciplina){
 
 		EntityManager manager = fac.createEntityManager();
 		try{
