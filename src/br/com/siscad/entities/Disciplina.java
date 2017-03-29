@@ -67,10 +67,5 @@ public class Disciplina extends AbstractEntity {
 		this.turmas = turmas;
 	}	
 
-	
-	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dce65349fd96d706c9afc9aacfae6923afcd9ed9
+
