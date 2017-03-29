@@ -2,24 +2,25 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import br.com.siscad.entities.Aluno;
+import br.com.siscad.entities.Curso;
 import br.com.siscad.entities.Professor;
 import br.com.siscad.services.AlunoService;
+import br.com.siscad.services.CursoService;
 import br.com.siscad.services.ProfessorService;
 
 public class Menu {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
-		int opt, opt2;
+		int opt=1, opt2;
 		
 		Scanner scan= new Scanner(System.in);
 		
 		PrintMenuPrincipal();
 		
-		
-		opt=scan.nextInt();
-		
 		while (opt!=0){
+			
+			opt=scan.nextInt();
 			
 			switch(opt){
 				case 1:{
@@ -36,6 +37,10 @@ public class Menu {
 				    	AtualizarAluno();
 				    else if (opt2==4)
 				    	RemoverAluno();
+				    else if (opt2==0){
+				    	PrintMenuPrincipal();
+				    	continue;
+				    }
 				}break;
 				
 				case 2:{
@@ -52,6 +57,13 @@ public class Menu {
 				    	AtualizarProfessor();
 				    else if (opt2==4)
 				    	RemoverProfessor();
+				    else if (opt2==5)
+				    	InserirProfessorCurso();
+				    else if (opt2==0){
+				    	PrintMenuPrincipal();
+				    	continue;
+				    }
+				    	
 				}break;
 				
 				case 0:{
@@ -79,7 +91,7 @@ public class Menu {
 		System.out.println("2- Buscar aluno");
 		System.out.println("3- Atualizar aluno");
 		System.out.println("4- Excluir aluno");
-		System.out.println("0- Sair");
+		System.out.println("0- Voltar");
 	}
 	
 	public static void PrintMenuProfessor(){
@@ -88,7 +100,73 @@ public class Menu {
 		System.out.println("2- Buscar professor");
 		System.out.println("3- Atualizar professor");
 		System.out.println("4- Excluir professor");
-		System.out.println("0- Sair");
+		System.out.println("5- Inserir professor em curso");
+		System.out.println("0- Voltar");
+	}
+	
+	
+	public static void CadAluno(){
+		Aluno aluno=new Aluno();
+		
+		Scanner form=new Scanner(System.in);
+		System.out.println("Digite a matricula do aluno: ");
+		String matricula=form.nextLine();
+		aluno.setMatricula(matricula);
+		System.out.println("Digite o nome do aluno: ");
+		String nome=form.nextLine();
+		aluno.setNome(nome);
+		System.out.println("Digite a cidade do aluno: ");
+		String cidade=form.nextLine();
+		aluno.setCidade(cidade);
+		
+		AlunoService.MatriculaAluno(aluno);
+		System.out.println("Aluno cadastrado com sucesso!");
+		System.out.println("ID do aluno: "+aluno.getId());
+		
+	}
+	
+	public static void BuscarAluno(){
+		Scanner form=new Scanner(System.in);
+		System.out.println("Digite o ID do aluno: ");
+		Long id=form.nextLong();
+		
+		Aluno aluno=AlunoService.buscarAlunoPorId(id);
+		
+		System.out.println("Nome: "+aluno.getNome());
+		
+	}
+	
+	public static void AtualizarAluno(){
+		Scanner form=new Scanner(System.in);
+		System.out.println("Digite o ID do aluno: ");
+		Long id=Long.parseLong(form.nextLine());
+		
+		Aluno aluno=AlunoService.buscarAlunoPorId(id);
+		
+		System.out.println("Nome: "+aluno.getNome());
+		
+		System.out.println("Digite o novo nome do aluno: ");
+		String nome=form.nextLine();
+		aluno.setNome(nome);
+		System.out.println("Digite a cidade do aluno: ");
+		String cidade=form.nextLine();
+		aluno.setCidade(cidade);
+		
+		AlunoService.AlterarAluno(aluno);
+		System.out.println("Aluno alterado com sucesso!");
+		
+	}
+	
+	public static void RemoverAluno(){
+		Scanner form=new Scanner(System.in);
+		System.out.println("Digite o ID do aluno: ");
+		Long id=form.nextLong();
+		
+		Aluno aluno=AlunoService.buscarAlunoPorId(id);
+		AlunoService.RemoverAluno(aluno);
+		
+		System.out.println("Aluno removido com sucesso!");
+		
 	}
 	
 	public static void CadProfessor(){
@@ -155,70 +233,19 @@ public class Menu {
 		
 	}
 	
-	public static void CadAluno(){
-		Aluno aluno=new Aluno();
-		
+	public static void InserirProfessorCurso(){
 		Scanner form=new Scanner(System.in);
-		System.out.println("Digite a matricula do aluno: ");
-		String matricula=form.nextLine();
-		aluno.setMatricula(matricula);
-		System.out.println("Digite o nome do aluno: ");
-		String nome=form.nextLine();
-		aluno.setNome(nome);
-		System.out.println("Digite a cidade do aluno: ");
-		String cidade=form.nextLine();
-		aluno.setCidade(cidade);
-		
-		AlunoService.MatriculaAluno(aluno);
-		System.out.println("Aluno cadastrado com sucesso!");
-		System.out.println("ID do aluno: "+aluno.getId());
-		
-	}
-	
-	public static void BuscarAluno(){
-		Scanner form=new Scanner(System.in);
-		System.out.println("Digite o ID do aluno: ");
-		Long id=form.nextLong();
-		
-		Aluno aluno=AlunoService.buscarAlunoPorId(id);
-		
-		System.out.println("Nome: "+aluno.getNome());
-		
-	}
-	
-	public static void AtualizarAluno(){
-		Scanner form=new Scanner(System.in);
-		System.out.println("Digite o ID do aluno: ");
+		System.out.println("Digite o ID do professor: ");
 		Long id=Long.parseLong(form.nextLine());
+		Professor professor=ProfessorService.buscarProfessorPorId(id);
 		
-		Aluno aluno=AlunoService.buscarAlunoPorId(id);
+		System.out.println("Digite o ID do curso ao qual você deseja acrescentar o professor: ");
+		Long id2=Long.parseLong(form.nextLine());
+		Curso curso=CursoService.buscarCurso(id2);
 		
-		System.out.println("Nome: "+aluno.getNome());
-		
-		System.out.println("Digite o novo nome do aluno: ");
-		String nome=form.nextLine();
-		aluno.setNome(nome);
-		System.out.println("Digite a cidade do aluno: ");
-		String cidade=form.nextLine();
-		aluno.setCidade(cidade);
-		
-		AlunoService.AlterarAluno(aluno);
-		System.out.println("Aluno alterado com sucesso!");
+		CursoService.inserirProfessorCurso(professor, curso);
+		System.out.println("Professor alterado com sucesso!");
 		
 	}
-	
-	public static void RemoverAluno(){
-		Scanner form=new Scanner(System.in);
-		System.out.println("Digite o ID do aluno: ");
-		Long id=form.nextLong();
-		
-		Aluno aluno=AlunoService.buscarAlunoPorId(id);
-		AlunoService.RemoverAluno(aluno);
-		
-		System.out.println("Aluno removido com sucesso!");
-		
-	}
-	
-	
 	
 }

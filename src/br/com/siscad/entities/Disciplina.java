@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 @SequenceGenerator(name = "disciplina", sequenceName = "disciplina_name", allocationSize = 1)
 
-public class Disciplina {
+public class Disciplina extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "disciplina")
@@ -27,8 +27,8 @@ public class Disciplina {
 	@OneToMany(mappedBy = "disciplina")
 	private List<Turma> turmas;
 
-	public int getId() {
-		return id;
+	public Long getId() {
+		return (long) id;
 	}
 
 	public void setId(int id) {
@@ -65,7 +65,8 @@ public class Disciplina {
 
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
-	}
+	}	
 
+	
 	
 }
