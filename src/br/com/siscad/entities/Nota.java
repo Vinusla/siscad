@@ -8,12 +8,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "nota", sequenceName = "nota_name", allocationSize = 1)
+@SequenceGenerator(name = "nota", sequenceName = "nota_seq", allocationSize = 1)
 public class Nota extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nota")	
-	private int id;
+	private Long id;
 	private int unidade;
 	private float nota;
 	private float peso;
@@ -44,12 +44,12 @@ public class Nota extends AbstractEntity {
 	public void setPeso(float peso) {
 		this.peso = peso;
 	}
-
+	@Override
 	public Long getId() {
-		return (long) id;
+		return  id;
 	}
-
-	public void setId(int id) {
+	@Override
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

@@ -4,18 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.siscad.dao.AlunoDAO;
 import br.com.siscad.dao.DisciplinaDAO;
 import br.com.siscad.entities.Disciplina;
 
 public class DisciplinaService {
-	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
+	
 	
 	public static void CadastrarDisciplina(Disciplina disciplina){
 
-		EntityManager manager = fac.createEntityManager();
+		DisciplinaDAO dao = new DisciplinaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			DisciplinaDAO dao = new DisciplinaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.inserir(disciplina);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -30,10 +31,10 @@ public class DisciplinaService {
 	
 	public static Disciplina buscarDisciplinaPorId(Long id){
 		Disciplina disciplina = null;
-		EntityManager manager = fac.createEntityManager();
+		DisciplinaDAO dao = new DisciplinaDAO();
+		EntityManager manager = dao.getEntityManger();
 		manager.getTransaction().begin();
-		try{
-			DisciplinaDAO dao = new DisciplinaDAO(manager);
+		try{			
 			disciplina = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -47,10 +48,10 @@ public class DisciplinaService {
 	}
 	
 	public static void AlterarDisciplina(Disciplina disciplina){
-		EntityManager manager = fac.createEntityManager();
+		DisciplinaDAO dao = new DisciplinaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			DisciplinaDAO dao = new DisciplinaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.atualizar(disciplina);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -63,14 +64,14 @@ public class DisciplinaService {
 	}
 	
 	public static void RemoverDisciplina(Disciplina disciplina){
-		EntityManager manager = fac.createEntityManager();
+		DisciplinaDAO dao = new DisciplinaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			DisciplinaDAO dao = new DisciplinaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.excluir(disciplina);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Ocorreu um erro durante a exclusão da disciplina!");
+			System.out.println("Ocorreu um erro durante a exclusï¿½o da disciplina!");
 			manager.getTransaction().rollback();
 		}
 		finally{

@@ -2,16 +2,26 @@ package br.com.siscad.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Professor extends Usuario {
 
+	
 	private String areaAtuacao;
 	private String titulacao;
 
-	@ManyToMany(mappedBy = "professores")
+	@ManyToMany
+	@JoinTable(name="Curso_Professor",  
+	joinColumns=@JoinColumn(name="curso_ID"),  
+	inverseJoinColumns=@JoinColumn(name="prof_ID"))
 	private List<Curso> cursos;
 	
 	@OneToMany(mappedBy = "professor")
@@ -50,14 +60,13 @@ public class Professor extends Usuario {
 	}
 
 	@Override
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+	public Long getId() {		
+		return id;
 	}
 
 	@Override
-	public void setId(int id) {
-		// TODO Auto-generated method stub
+	public void setId(Long id) {
+		this.id = id;
 		
 	}
 	

@@ -1,6 +1,7 @@
 package br.com.siscad.services;
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -8,15 +9,31 @@ import javax.persistence.Query;
 import br.com.siscad.dao.AlunoDAO;
 import br.com.siscad.entities.Aluno;
 
-public class AlunoService {
-	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
-	
-	public static void MatriculaAluno(Aluno aluno){
 
-		EntityManager manager = fac.createEntityManager();
+public class AlunoService {
+
+	
+	public static void matriculaAluno(Aluno aluno){
+		AlunoDAO dao = new AlunoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
+			manager.getTransaction().begin();						
+			dao.inserir(aluno);
+			manager.getTransaction().commit();
+		}catch (Exception e){
+			manager.getTransaction().rollback();
+		}
+		finally{
+			manager.close();
+		}
+	
+	}
+	
+	public static void matriculaAlunoNoCurso(Aluno aluno){
+		AlunoDAO dao = new AlunoDAO();
+		EntityManager manager = dao.getEntityManger();
+		try{
+			manager.getTransaction().begin();						
 			dao.inserir(aluno);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -31,10 +48,10 @@ public class AlunoService {
 	
 	public static Aluno buscarAlunoPorId(Long id){
 		Aluno aluno = null;
-		EntityManager manager = fac.createEntityManager();
+		AlunoDAO dao = new AlunoDAO();
+		EntityManager manager = dao.getEntityManger();
 		manager.getTransaction().begin();
-		try{
-			AlunoDAO dao = new AlunoDAO(manager);
+		try{	
 			aluno = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -49,10 +66,10 @@ public class AlunoService {
 	
 	public static Aluno buscarAlunoPorLogin(String login){
 		Aluno aluno = null;
-		EntityManager manager = fac.createEntityManager();
+		AlunoDAO dao = new AlunoDAO();
+		EntityManager manager = dao.getEntityManger();
 		manager.getTransaction().begin();
-		try{
-			AlunoDAO dao = new AlunoDAO(manager);
+		try{		
 			aluno = dao.buscarPorLogin(login);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -66,10 +83,10 @@ public class AlunoService {
 	}
 	
 	public static void AlterarAluno(Aluno aluno){
-		EntityManager manager = fac.createEntityManager();
+		AlunoDAO dao = new AlunoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
+			manager.getTransaction().begin();			
 			dao.atualizar(aluno);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -82,14 +99,14 @@ public class AlunoService {
 	}
 	
 	public static void RemoverAluno(Aluno aluno){
-		EntityManager manager = fac.createEntityManager();
+		AlunoDAO dao = new AlunoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			AlunoDAO dao = new AlunoDAO(manager);
+			manager.getTransaction().begin();			
 			dao.excluir(aluno);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Ocorreu um erro durante a exclusão do aluno!");
+			System.out.println("Ocorreu um erro durante a exclusï¿½o do aluno!");
 			manager.getTransaction().rollback();
 		}
 		finally{
@@ -97,5 +114,30 @@ public class AlunoService {
 		}
 	
 	}
+	
+	
+	/*public static boolean getAlunoPorSituacao(Aluno aluno, Desempenho desempenho){
+		EntityManager manager = fac.createEntityManager();
+		List <Nota> notas = new ArrayList();
+		
+		try{
+			manager.getTransaction().begin();
+			AlunoDAO dao = new AlunoDAO(manager);
+			
+			if(aluno.getId() == desempenho.getAluno().getId())
+			    notas =  
+			
+			
+			manager.getTransaction().commit();
+		}catch (Exception e){
+			System.out.println("Ocorreu um erro durante a exclusï¿½o do aluno!");
+			manager.getTransaction().rollback();
+		}
+		finally{
+			manager.close();
+		}
+	
+	}
+*/	
 	
 }

@@ -12,6 +12,11 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
 	public AlunoDAO(EntityManager entity) {
 		super(entity);
 	}
+	
+	public AlunoDAO() {
+		super();
+	}
+
 
 	@Override
 	public Class<Aluno> entityClass() {

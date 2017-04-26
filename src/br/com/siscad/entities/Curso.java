@@ -13,32 +13,32 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "curso", sequenceName = "curso_name", allocationSize = 1)
+@SequenceGenerator(name = "curso", sequenceName = "curso_seq", allocationSize = 1)
 public class Curso extends AbstractEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "curso")
-	private int id;
+	private Long id;
 	private String nome;
 	private String tipo;
 
-	@OneToMany(mappedBy = "curso")//o Aluno tem que informar a qual curso ele pertence. Isso deve ser feito na hora de criar o aluno. cirar aluno e no aluno.setCurso(objeto curso)
+	//@OneToMany(mappedBy = "curso")//o Aluno tem que informar a qual curso ele pertence. Isso deve ser feito na hora de criar o aluno. cirar aluno e no aluno.setCurso(objeto curso)
+	
+	@ManyToMany(mappedBy="cursos")	
 	private List<Aluno> alunos;
 
-	@ManyToMany
-	@JoinTable(name="Curso_Professor",  
-	joinColumns=@JoinColumn(name="Curso_ID"),  
-	inverseJoinColumns=@JoinColumn(name="Prof_ID"))
+	@ManyToMany(mappedBy = "cursos")	
 	private List<Professor> professores;
 
 	@OneToMany(mappedBy = "curso")
 	private List<Disciplina> disciplinas;
 
+	@Override
 	public Long getId() {
 		return (long) id;
 	}
-
-	public void setId(int id) {
+	@Override
+	public void setId(Long id) {
 		this.id = id;
 	}
 

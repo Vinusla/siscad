@@ -17,22 +17,23 @@ public class Disciplina extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "disciplina")
-	private int id;
+	private Long id;
 	private String nome;
 	private String area;
 
-	@ManyToOne(mappedBy = "cursos")
-	private List<Curso> cursos;
+	@ManyToOne
+	private Curso curso;
 	
 
 	@OneToMany(mappedBy = "disciplina")
 	private List<Turma> turmas;
 
+	@Override
 	public Long getId() {
 		return (long) id;
 	}
-
-	public void setId(int id) {
+	@Override
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,13 +53,15 @@ public class Disciplina extends AbstractEntity {
 		this.area = area;
 	}
 
-	public List<Curso> getCursos() {
-		return cursos;
+	
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
+
 	public List<Turma> getTurmas() {
 		return turmas;
 	}

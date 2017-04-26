@@ -14,7 +14,7 @@ public class Turma extends AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turma")
-	private int id;
+	private Long id;
 	private String semestre;
 	private int ano;
 
@@ -24,11 +24,12 @@ public class Turma extends AbstractEntity {
 	@ManyToOne
 	private Professor professor;
 
+	@Override
 	public Long getId() {
-		return (long) id;
+		return id;
 	}
-
-	public void setId(int id) {
+	@Override
+	public void setId(Long id) {
 		this.id = id;
 	}
 

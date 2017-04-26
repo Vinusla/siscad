@@ -9,6 +9,10 @@ public class TurmaDAO extends AbstractDAO<Turma> {
 	public TurmaDAO(EntityManager entity) {
 		super(entity);
 	}
+	
+	public TurmaDAO(){
+		super();
+	}
 
 	@Override
 	public Class<Turma> entityClass() {

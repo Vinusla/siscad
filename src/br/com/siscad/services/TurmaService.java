@@ -4,18 +4,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.siscad.dao.AlunoDAO;
 import br.com.siscad.dao.TurmaDAO;
+import br.com.siscad.entities.Aluno;
 import br.com.siscad.entities.Turma;
 
 public class TurmaService {
-	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
+
 	
 	public static void CadastrarTurma(Turma Turma){
 
-		EntityManager manager = fac.createEntityManager();
+		TurmaDAO dao = new TurmaDAO();
+		EntityManager manager = dao.getEntityManger();
+		
 		try{
-			manager.getTransaction().begin();
-			TurmaDAO dao = new TurmaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.inserir(Turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -30,10 +33,10 @@ public class TurmaService {
 	
 	public static Turma buscarTurma(Long id){
 		Turma Turma = null;
-		EntityManager manager = fac.createEntityManager();
+		TurmaDAO dao = new TurmaDAO();
+		EntityManager manager = dao.getEntityManger();
 		manager.getTransaction().begin();
-		try{
-			TurmaDAO dao = new TurmaDAO(manager);
+		try{			
 			Turma = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -47,10 +50,10 @@ public class TurmaService {
 	}
 	
 	public static void AlterarTurma(Turma Turma){
-		EntityManager manager = fac.createEntityManager();
+		TurmaDAO dao = new TurmaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			TurmaDAO dao = new TurmaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.atualizar(Turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -63,14 +66,14 @@ public class TurmaService {
 	}
 	
 	public static void RemoverTurma(Turma Turma){
-		EntityManager manager = fac.createEntityManager();
+		TurmaDAO dao = new TurmaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			TurmaDAO dao = new TurmaDAO(manager);
+			manager.getTransaction().begin();		
 			dao.excluir(Turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Turma não removida!");
+			System.out.println("Turma nï¿½o removida!");
 			manager.getTransaction().rollback();
 		}
 		finally{
@@ -78,6 +81,15 @@ public class TurmaService {
 		}
 	
 	}
+	
+	
+	public static void MatricularAluno(Aluno aluno, Turma Turma){
+		TurmaDAO dao = new TurmaDAO();
+		EntityManager manager = dao.getEntityManger();
+		
+	
+	}
+	
 	
 }
 

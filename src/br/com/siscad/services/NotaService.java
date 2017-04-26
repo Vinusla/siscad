@@ -4,18 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.siscad.dao.AlunoDAO;
 import br.com.siscad.dao.NotaDAO;
 import br.com.siscad.entities.Nota;
 
 public class NotaService {
-	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
+	
 	
 	public static void AdicionaNota(Nota nota){
 
-		EntityManager manager = fac.createEntityManager();
+		NotaDAO dao = new NotaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			NotaDAO dao = new NotaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.inserir(nota);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -47,10 +48,10 @@ public class NotaService {
 	}*/
 	
 	public static void AlterarNota(Nota nota){
-		EntityManager manager = fac.createEntityManager();
+		NotaDAO dao = new NotaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{                                                             
-			manager.getTransaction().begin();
-			NotaDAO dao = new NotaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.atualizar(nota);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -63,14 +64,14 @@ public class NotaService {
 	}
 	
 	public static void RemoverNota(Nota nota){
-		EntityManager manager = fac.createEntityManager();
+		NotaDAO dao = new NotaDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			NotaDAO dao = new NotaDAO(manager);
+			manager.getTransaction().begin();			
 			dao.excluir(nota);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Ocorreu um erro durante a exclusão da nota!");
+			System.out.println("Ocorreu um erro durante a exclusï¿½o da nota!");
 			manager.getTransaction().rollback();
 		}
 		finally{

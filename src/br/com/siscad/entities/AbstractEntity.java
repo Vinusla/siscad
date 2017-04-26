@@ -4,7 +4,7 @@ public abstract class AbstractEntity {
 	
 	public abstract Long getId();
 	
-	public abstract void setId(int id);
+	public abstract void setId(Long id);
 	
 	@Override
 	public boolean equals(Object obj) {

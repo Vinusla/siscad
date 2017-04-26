@@ -4,18 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.siscad.dao.AlunoDAO;
 import br.com.siscad.dao.ProfessorDAO;
 import br.com.siscad.entities.Professor;
 
 public class ProfessorService {
-	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
 	
-	public static void CadastraProfessor(Professor professor){
+	public static void CadastraProfessorNoCurso(Professor professor){
 
-		EntityManager manager = fac.createEntityManager();
+		ProfessorDAO dao = new ProfessorDAO();
+		EntityManager manager = dao.getEntityManger();
+		
 		try{
-			manager.getTransaction().begin();
-			ProfessorDAO dao = new ProfessorDAO(manager);
+			manager.getTransaction().begin();			
 			dao.inserir(professor);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -30,10 +31,10 @@ public class ProfessorService {
 	
 	public static Professor buscarProfessorPorId(Long id){
 		Professor professor = null;
-		EntityManager manager = fac.createEntityManager();
+		ProfessorDAO dao = new ProfessorDAO();
+		EntityManager manager = dao.getEntityManger();
 		manager.getTransaction().begin();
-		try{
-			ProfessorDAO dao = new ProfessorDAO(manager);
+		try{			
 			professor = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -47,10 +48,10 @@ public class ProfessorService {
 	}
 	
 	public static void AlterarProfessor(Professor professor){
-		EntityManager manager = fac.createEntityManager();
+		ProfessorDAO dao = new ProfessorDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			ProfessorDAO dao = new ProfessorDAO(manager);
+			manager.getTransaction().begin();			
 			dao.atualizar(professor);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -63,14 +64,14 @@ public class ProfessorService {
 	}
 	
 	public static void RemoverProfessor(Professor professor){
-		EntityManager manager = fac.createEntityManager();
+		ProfessorDAO dao = new ProfessorDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			ProfessorDAO dao = new ProfessorDAO(manager);
+			manager.getTransaction().begin();			
 			dao.excluir(professor);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Ocorreu um erro durante a exclusão do professor!");
+			System.out.println("Ocorreu um erro durante a exclusï¿½o do professor!");
 			manager.getTransaction().rollback();
 		}
 		finally{

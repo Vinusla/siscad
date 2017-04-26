@@ -9,6 +9,11 @@ public class CursoDAO extends AbstractDAO<Curso> {
 	public CursoDAO(EntityManager entity) {
 		super(entity);
 	}
+	
+	public CursoDAO() {
+		super();
+
+	}
 
 	@Override
 	public Class<Curso> entityClass() {

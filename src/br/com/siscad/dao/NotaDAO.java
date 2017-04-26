@@ -9,6 +9,10 @@ public class NotaDAO extends AbstractDAO<Nota>{
 	public NotaDAO(EntityManager entity) {
 		super(entity);
 	}
+	
+	public NotaDAO(){
+		super();
+	}
 
 	@Override
 	public Class<Nota> entityClass() {

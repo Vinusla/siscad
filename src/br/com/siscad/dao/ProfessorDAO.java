@@ -9,6 +9,11 @@ public class ProfessorDAO extends AbstractDAO<Professor> {
 	public ProfessorDAO(EntityManager entity) {
 		super(entity);
 	}
+	
+	public ProfessorDAO() {
+		super();
+	
+	}
 
 	@Override
 	public Class<Professor> entityClass() {

@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import com.mchange.v2.resourcepool.ResourcePool.Manager;
 
+import br.com.siscad.dao.AlunoDAO;
 import br.com.siscad.dao.CursoDAO;
 import br.com.siscad.entities.Curso;
 import br.com.siscad.entities.Professor;
@@ -15,14 +16,14 @@ import br.com.siscad.entities.Disciplina;;
 
 
 public class CursoService {
-	static EntityManagerFactory fac  = Persistence.createEntityManagerFactory("siscad");
 	
 	public static void CadastrarCurso(Curso curso){
 
-		EntityManager manager = fac.createEntityManager();
+		CursoDAO dao = new CursoDAO();
+		EntityManager manager = dao.getEntityManger();
+		
 		try{
-			manager.getTransaction().begin();
-			CursoDAO dao = new CursoDAO(manager);
+			manager.getTransaction().begin();			
 			dao.inserir(curso);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -37,10 +38,10 @@ public class CursoService {
 	
 	public static Curso buscarCurso(Long id){
 		Curso curso = null;
-		EntityManager manager = fac.createEntityManager();
+		CursoDAO dao = new CursoDAO();
+		EntityManager manager = dao.getEntityManger();
 		manager.getTransaction().begin();
-		try{
-			CursoDAO dao = new CursoDAO(manager);
+		try{			
 			curso = dao.buscarPorId(id);
 		}catch (Exception e){
 			manager.getTransaction().rollback();
@@ -54,10 +55,10 @@ public class CursoService {
 	}
 	
 	public static void AlterarCurso(Curso curso){
-		EntityManager manager = fac.createEntityManager();
+		CursoDAO dao = new CursoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			CursoDAO dao = new CursoDAO(manager);
+			manager.getTransaction().begin();			
 			dao.atualizar(curso);
 			manager.getTransaction().commit();
 		}catch (Exception e){
@@ -70,14 +71,14 @@ public class CursoService {
 	}
 	
 	public static void RemoverCurso(Curso curso){
-		EntityManager manager = fac.createEntityManager();
+		CursoDAO dao = new CursoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			CursoDAO dao = new CursoDAO(manager);
+			manager.getTransaction().begin();			
 			dao.excluir(curso);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Curso não removido!");
+			System.out.println("Curso nï¿½o removido!");
 			manager.getTransaction().rollback();
 		}
 		finally{
@@ -86,11 +87,11 @@ public class CursoService {
 	
 	}
 	
-	public static void inserirProfessorCurso(Professor professor,Curso curso){
-		EntityManager manager = fac.createEntityManager();
+	public static void inserirProfessor(Professor professor,Curso curso){
+		CursoDAO dao = new CursoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			CursoDAO dao = new CursoDAO(manager);
+			manager.getTransaction().begin();			
 			curso.setProfessores(new ArrayList<>());
 			curso.getProfessores().add(professor);
 			
@@ -99,7 +100,7 @@ public class CursoService {
 			dao.atualizar(curso);			
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("professor não pode ser inserido no curso!");
+			System.out.println("professor nï¿½o pode ser inserido no curso!");
 			manager.getTransaction().rollback();
 		}
 		finally{
@@ -109,30 +110,23 @@ public class CursoService {
 	}
 	
 	public static void inserirDisciplina(Disciplina disciplina, Curso curso){
-			EntityManager manager = fac.createEntityManager();
+		CursoDAO dao = new CursoDAO();
+		EntityManager manager = dao.getEntityManger();
 		try{
-			manager.getTransaction().begin();
-			CursoDAO dao = new CursoDAO(manager);
+			manager.getTransaction().begin();			
 			curso.setDisciplinas(new ArrayList<>());
-			curso.getDisciplinas().add(disciplina);
-			
-			disciplina.setCursos(new ArrayList<>());
-			disciplina.getCursos().add(curso);
+			curso.getDisciplinas().add(disciplina);			
+			disciplina.setCurso(curso);;
 			dao.atualizar(curso);
 			manager.getTransaction().commit();
 		}catch (Exception e){
-			System.out.println("Disciplina não pode ser inserida no curso!");
+			System.out.println("Disciplina nï¿½o pode ser inserida no curso!");
 			manager.getTransaction().rollback();
 		}finally{
 			manager.close();
 		}
 
 	}
-	
-	
-	
-	
-	
 	
 	
 }

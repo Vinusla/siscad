@@ -9,6 +9,10 @@ public class DisciplinaDAO  extends AbstractDAO<Disciplina> {
 	public DisciplinaDAO(EntityManager entity) {
 		super(entity);
 	}
+	
+	public DisciplinaDAO() {
+		super();
+	}
 
 	@Override
 	public Class<Disciplina> entityClass() {

@@ -1,6 +1,12 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import br.com.siscad.dao.CursoDAO;
 import br.com.siscad.entities.Aluno;
 import br.com.siscad.entities.Curso;
 import br.com.siscad.entities.Disciplina;
@@ -16,7 +22,32 @@ public class Menu {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
-		int opt=1, opt2;
+		
+		//EntityManagerFactory factory = Persistence.createEntityManagerFactory("siscad");
+		//EntityManager entityManager = factory.createEntityManager();
+		//factory.close();
+		/*
+		Curso c = new Curso();
+		c.setNome("CC");
+		c.setTipo("exatas");		
+		CursoService.CadastrarCurso(c);*/
+		
+		
+		Curso c = CursoService.buscarCurso(2l);
+		Aluno a = new Aluno();
+		a.setNome("Vinicius");
+		a.setMatricula("5555");
+		a.setCursos(new ArrayList<Curso>());
+		a.getCursos().add(c);
+		
+		c.setAlunos(new ArrayList<Aluno>());
+		c.getAlunos().add(a);
+		
+		AlunoService.matriculaAlunoNoCurso(a);
+
+		
+		
+		/*int opt=1, opt2;
 		
 		Scanner scan= new Scanner(System.in);
 		
@@ -32,7 +63,7 @@ public class Menu {
 			
 			switch(opt){
 				case 1:{
-					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+					//new ProcessBuilder( "/c", "cls").inheritIO().start().waitFor();
 				    System.out.flush();  
 				    PrintMenuAluno();
 				    opt2=scan.nextInt();
@@ -52,7 +83,7 @@ public class Menu {
 				}break;
 				
 				case 2:{
-					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+					//new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 				    System.out.flush();  
 				    PrintMenuProfessor();
 				    opt2=scan.nextInt();
@@ -141,7 +172,7 @@ public class Menu {
 				}break;
 			}
 			
-		}
+		}*/
 		
 		
 		
@@ -149,7 +180,7 @@ public class Menu {
 	}
 	
 	public static void PrintMenuPrincipal(){
-		System.out.println("------Sistema acadêmico versão 0.01------");
+		System.out.println("------Sistema acadï¿½mico versï¿½o 0.01------");
 		System.out.println("1- Gerenciar alunos");
 		System.out.println("2- Gerenciar professores");
 		System.out.println("3- Gerenciar cursos");
@@ -159,7 +190,7 @@ public class Menu {
 	}
 	
 	public static void PrintMenuAluno(){
-		System.out.println("------Sistema acadêmico versão 0.01------");
+		System.out.println("------Sistema acadï¿½mico versï¿½o 0.01------");
 		System.out.println("1- Cadastrar aluno");
 		System.out.println("2- Buscar aluno");
 		System.out.println("3- Atualizar aluno");
@@ -168,7 +199,7 @@ public class Menu {
 	}
 	
 	public static void PrintMenuProfessor(){
-		System.out.println("------Sistema acadêmico versão 0.01------");
+		System.out.println("------Sistema acadï¿½mico versï¿½o 0.01------");
 		System.out.println("1- Cadastrar professor");
 		System.out.println("2- Buscar professor");
 		System.out.println("3- Atualizar professor");
@@ -247,7 +278,7 @@ public class Menu {
 		String senha=form.nextLine();
 		aluno.setSenha(senha);
 		
-		AlunoService.MatriculaAluno(aluno);
+		AlunoService.matriculaAluno(aluno);
 		System.out.println("Aluno cadastrado com sucesso!");
 		System.out.println("ID do aluno: "+aluno.getId());
 		
@@ -311,7 +342,7 @@ public class Menu {
 		String cidade=form.nextLine();
 		professor.setCidade(cidade);
 		
-		ProfessorService.CadastraProfessor(professor);
+		ProfessorService.CadastraProfessorNoCurso(professor);
 		System.out.println("Professor cadastrado com sucesso!");
 		System.out.println("ID do professor: "+professor.getId());
 		
@@ -367,11 +398,11 @@ public class Menu {
 		Long id=Long.parseLong(form.nextLine());
 		Professor professor=ProfessorService.buscarProfessorPorId(id);
 		
-		System.out.println("Digite o ID do curso ao qual você deseja acrescentar o professor: ");
+		System.out.println("Digite o ID do curso ao qual vocï¿½ deseja acrescentar o professor: ");
 		Long id2=Long.parseLong(form.nextLine());
 		Curso curso=CursoService.buscarCurso(id2);
 		
-		CursoService.inserirProfessorCurso(professor, curso);
+		CursoService.inserirProfessor(professor, curso);
 		System.out.println("Professor alterado com sucesso!");
 		
 	}
