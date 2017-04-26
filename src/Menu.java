@@ -33,7 +33,7 @@ public class Menu {
 		CursoService.CadastrarCurso(c);*/
 		
 		
-		Curso c = CursoService.buscarCurso(2l);
+		/*Curso c = CursoService.buscarCurso(2l);
 		Aluno a = new Aluno();
 		a.setNome("Vinicius");
 		a.setMatricula("5555");
@@ -43,11 +43,11 @@ public class Menu {
 		c.setAlunos(new ArrayList<Aluno>());
 		c.getAlunos().add(a);
 		
-		AlunoService.matriculaAlunoNoCurso(a);
+		AlunoService.matriculaAlunoNoCurso(a);*/
 
 		
 		
-		/*int opt=1, opt2;
+		int opt=1, opt2;
 		
 		Scanner scan= new Scanner(System.in);
 		
@@ -172,7 +172,7 @@ public class Menu {
 				}break;
 			}
 			
-		}*/
+		}
 		
 		
 		
@@ -209,7 +209,7 @@ public class Menu {
 	}
 	
 	public static void PrintMenuCurso(){
-		System.out.println("------Sistema acadêmico versão 0.01------");
+		System.out.println("------Sistema acadï¿½mico versï¿½o 0.01------");
 		System.out.println("1- Cadastrar curso");
 		System.out.println("2- Buscar curso");
 		System.out.println("3- Atualizar curso");
@@ -218,7 +218,7 @@ public class Menu {
 	}
 	
 	public static void PrintMenuDisciplina(){
-		System.out.println("------Sistema acadêmico versão 0.01------");
+		System.out.println("------Sistema acadï¿½mico versï¿½o 0.01------");
 		System.out.println("1- Cadastrar disciplina");
 		System.out.println("2- Buscar disciplina");
 		System.out.println("3- Atualizar disciplina");
@@ -227,7 +227,7 @@ public class Menu {
 	}
 	
 	public static void PrintMenuTurma(){
-		System.out.println("------Sistema acadêmico versão 0.01------");
+		System.out.println("------Sistema acadï¿½mico versï¿½o 0.01------");
 		System.out.println("1- Cadastrar turma");
 		System.out.println("2- Buscar turma");
 		System.out.println("3- Atualizar turma");
@@ -237,17 +237,17 @@ public class Menu {
 	
 	public static boolean LoginUser(){
 		Scanner form=new Scanner(System.in);
-		System.out.println("Digite o login do usuário: ");
+		System.out.println("Digite o login do usuï¿½rio: ");
 		String login=form.nextLine();
 		
 		Aluno aluno=AlunoService.buscarAlunoPorLogin(login);
 		
 		if (aluno==null){
-			System.out.println("Usuário não cadastrado!");
+			System.out.println("Usuï¿½rio nï¿½o cadastrado!");
 			return false;
 		}
 		
-		System.out.println("Digite a senha do usuário: ");
+		System.out.println("Digite a senha do usuï¿½rio: ");
 		String senha=form.nextLine();
 		
 		if (aluno.getSenha().equals(senha))
@@ -475,7 +475,7 @@ public class Menu {
 		System.out.println("Digite o nome da disciplina: ");
 		String nome=form.nextLine();
 		disciplina.setNome(nome);
-		System.out.println("Digite a área da disciplina: ");
+		System.out.println("Digite a ï¿½rea da disciplina: ");
 		String area=form.nextLine();
 		disciplina.setArea(area);
 		
@@ -508,7 +508,7 @@ public class Menu {
 		System.out.println("Digite o novo nome da disciplina: ");
 		String nome=form.nextLine();
 		disciplina.setNome(nome);
-		System.out.println("Digite a nova área da disciplina: ");
+		System.out.println("Digite a nova ï¿½rea da disciplina: ");
 		String area=form.nextLine();
 		disciplina.setArea(area);
 		
