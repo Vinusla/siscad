@@ -38,6 +38,7 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
 	}
 	
 	public void inserir(T entity){
+			
 		manager.persist(entity);
 	}
 	

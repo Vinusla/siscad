@@ -1,27 +1,37 @@
 package br.com.siscad.services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.ArrayList;
 
-import br.com.siscad.dao.AlunoDAO;
+import javax.persistence.EntityManager;
 import br.com.siscad.dao.TurmaDAO;
 import br.com.siscad.entities.Aluno;
+import br.com.siscad.entities.Disciplina;
+import br.com.siscad.entities.Professor;
 import br.com.siscad.entities.Turma;
 
 public class TurmaService {
 
 	
-	public static void CadastrarTurma(Turma Turma){
+	public static void CadastrarTurma(Turma turma, Professor professor, Disciplina disciplina){
 
 		TurmaDAO dao = new TurmaDAO();
-		EntityManager manager = dao.getEntityManger();
+		turma.setProfessor(professor);
+		turma.setDisciplina(disciplina);
 		
+		professor.setTurmas(new ArrayList<Turma>());
+		professor.getTurmas().add(turma);
+		
+		disciplina.setTurmas(new ArrayList<Turma>());
+		disciplina.getTurmas().add(turma);
+		
+		EntityManager manager = dao.getEntityManger();
+		manager.getTransaction().begin();		
 		try{
-			manager.getTransaction().begin();			
-			dao.inserir(Turma);
+						
+			dao.inserir(turma);
 			manager.getTransaction().commit();
 		}catch (Exception e){
+			e.printStackTrace();
 			manager.getTransaction().rollback();
 		}
 		finally{

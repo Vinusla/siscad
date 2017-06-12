@@ -10,7 +10,7 @@ import br.com.siscad.entities.Professor;
 
 public class ProfessorService {
 	
-	public static void CadastraProfessorNoCurso(Professor professor){
+	public static void CadastraProfessor(Professor professor){
 
 		ProfessorDAO dao = new ProfessorDAO();
 		EntityManager manager = dao.getEntityManger();

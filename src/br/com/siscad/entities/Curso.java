@@ -82,6 +82,10 @@ public class Curso extends AbstractEntity{
 		this.disciplinas = disciplinas;
 	}
 	
+	public int qtdDisciplinas(){
+		return this.disciplinas.size();
+		
+	}
 	
 
 }

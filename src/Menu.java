@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.siscad.dao.CursoDAO;
+import br.com.siscad.dao.DisciplinaDAO;
 import br.com.siscad.entities.Aluno;
 import br.com.siscad.entities.Curso;
 import br.com.siscad.entities.Disciplina;
@@ -26,6 +27,28 @@ public class Menu {
 		//EntityManagerFactory factory = Persistence.createEntityManagerFactory("siscad");
 		//EntityManager entityManager = factory.createEntityManager();
 		//factory.close();
+		
+		
+		
+		/*Turma t = new Turma();
+		t.setDescricao("2017,1");		
+		
+		
+		Disciplina d = DisciplinaService.buscarDisciplinaPorId(3L);
+		Professor p = ProfessorService.buscarProfessorPorId(1L);
+		
+		TurmaService.CadastrarTurma(t, p, d);*/
+		
+		
+		/*Disciplina d = new Disciplina();
+		d.setNome("Lógica");
+		
+		Curso c = CursoService.buscarCurso(1L);
+		CursoService.inserirDisciplina(d, c);*/
+		
+		
+		
+		
 		/*
 		Curso c = new Curso();
 		c.setNome("CC");
@@ -47,7 +70,7 @@ public class Menu {
 
 		
 		
-		int opt=1, opt2;
+		/*int opt=1, opt2;
 		
 		Scanner scan= new Scanner(System.in);
 		
@@ -172,7 +195,7 @@ public class Menu {
 				}break;
 			}
 			
-		}
+		}*/
 		
 		
 		
@@ -342,7 +365,7 @@ public class Menu {
 		String cidade=form.nextLine();
 		professor.setCidade(cidade);
 		
-		ProfessorService.CadastraProfessorNoCurso(professor);
+		ProfessorService.CadastraProfessor(professor);
 		System.out.println("Professor cadastrado com sucesso!");
 		System.out.println("ID do professor: "+professor.getId());
 		
@@ -402,7 +425,7 @@ public class Menu {
 		Long id2=Long.parseLong(form.nextLine());
 		Curso curso=CursoService.buscarCurso(id2);
 		
-		CursoService.inserirProfessor(professor, curso);
+		CursoService.inserirProfessorNoCurso(professor, curso);
 		System.out.println("Professor alterado com sucesso!");
 		
 	}
@@ -531,6 +554,11 @@ public class Menu {
 	
 	public static void CadTurma(){
 		Turma turma=new Turma();
+		//buscar o professor
+		Professor professor = null;
+		
+		//buscar disciplina
+		Disciplina disciplina = null;
 		
 		Scanner form=new Scanner(System.in);
 		System.out.println("Digite o semestre da turma: ");
@@ -540,7 +568,7 @@ public class Menu {
 		int ano=Integer.parseInt(form.nextLine());
 		turma.setAno(ano);
 		
-		TurmaService.CadastrarTurma(turma);
+		TurmaService.CadastrarTurma(turma, professor, disciplina);
 		System.out.println("Disciplina cadastrado com sucesso!");
 		System.out.println("ID da disciplina: "+turma.getId());
 		
