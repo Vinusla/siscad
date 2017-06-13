@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <!-- <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/logar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CadastrarContaServlet</servlet-name>
+    <servlet-class>servlets.CadastrarContaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CadastrarContaServlet</servlet-name>
+    <url-pattern>/cadastrarConta</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>NovaContaServlet</servlet-name>
+    <servlet-class>servlets.NovaContaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NovaContaServlet</servlet-name>
+    <url-pattern>/novaConta</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <servlet-name>ListaMovimentacoesServlet</servlet-name>
+    <servlet-class>servlets.ListaMovimentacoesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListaMovimentacoesServlet</servlet-name>
+    <url-pattern>/listaMovimentacoes</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <servlet-name>NovaMovimentacaoServlet</servlet-name>
+    <servlet-class>servlets.NovaMovimentacaoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NovaMovimentacaoServlet</servlet-name>
+    <url-pattern>/novaMovimentacao</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CadastrarMovimentacaoServlet</servlet-name>
+    <servlet-class>servlets.CadastrarMovimentacaoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CadastrarMovimentacaoServlet</servlet-name>
+    <url-pattern>/cadastrarMovimentacao</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcluirMovimentacaoServlet</display-name>
+    <servlet-name>ExcluirMovimentacaoServlet</servlet-name>
+    <servlet-class>servlets.ExcluirMovimentacaoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcluirMovimentacaoServlet</servlet-name>
+    <url-pattern>/excluirMovimentacao</url-pattern>
+  </servlet-mapping> -->
+</web-app>
