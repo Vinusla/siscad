@@ -12,7 +12,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "desempenho", sequenceName = "desempenho_seq", allocationSize = 1)
-public class Desempenho extends AbstractEntity {
+public class Desempenho extends Observer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "desempenho")
@@ -57,6 +57,11 @@ public class Desempenho extends AbstractEntity {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+	
+	public void update(Observable o, Object arg) {
+
+		System.out.println("Nova nota adicionada: " + getNotas());
 	}
 
 }
