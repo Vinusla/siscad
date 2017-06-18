@@ -3,15 +3,15 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <!-- <servlet>
+   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>servlets.LoginServlet</servlet-class>
+    <servlet-class>br.com.siscad.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/logar</url-pattern>
   </servlet-mapping>
-  <servlet>
+  <!--<servlet>
     <servlet-name>CadastrarContaServlet</servlet-name>
     <servlet-class>servlets.CadastrarContaServlet</servlet-class>
   </servlet>

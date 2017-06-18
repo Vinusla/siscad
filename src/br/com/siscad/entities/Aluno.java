@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-public class Aluno extends Usuario {
+public class Aluno extends Usuario implements Autenticavel{
 	
 		
 	@ManyToMany
@@ -53,6 +53,12 @@ public class Aluno extends Usuario {
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+		
+	}
+
+	@Override
+	public boolean autentica(int senha) {
+		return true;
 		
 	}
 	

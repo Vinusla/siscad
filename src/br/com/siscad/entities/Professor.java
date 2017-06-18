@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Professor extends Usuario {
+public class Professor extends Usuario implements Autenticavel {
 
 	
 	private String areaAtuacao;
@@ -67,6 +67,12 @@ public class Professor extends Usuario {
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+		
+	}
+
+	@Override
+	public boolean autentica(int senha) {
+		return true;
 		
 	}
 	

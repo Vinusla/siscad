@@ -64,7 +64,7 @@ public class AlunoService {
 	
 	}
 	
-	public static Aluno buscarAlunoPorLogin(String login){
+	/*public static Aluno buscarAlunoPorLogin(String login){
 		Aluno aluno = null;
 		AlunoDAO dao = new AlunoDAO();
 		EntityManager manager = dao.getEntityManger();
@@ -80,7 +80,7 @@ public class AlunoService {
 		}
 		return aluno;
 	
-	}
+	}*/
 	
 	public static void AlterarAluno(Aluno aluno){
 		AlunoDAO dao = new AlunoDAO();

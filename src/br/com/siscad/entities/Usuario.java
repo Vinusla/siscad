@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @SequenceGenerator(name = "usuario", sequenceName = "usuario_seq", allocationSize = 1)
-public abstract class Usuario extends AbstractEntity {
+public abstract class Usuario extends AbstractEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="usuario")

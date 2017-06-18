@@ -24,6 +24,7 @@ public class Menu {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		
+		
 		//EntityManagerFactory factory = Persistence.createEntityManagerFactory("siscad");
 		//EntityManager entityManager = factory.createEntityManager();
 		//factory.close();
@@ -49,11 +50,13 @@ public class Menu {
 		
 		
 		
-		/*
-		Curso c = new Curso();
+		
+		/*Curso c = new Curso();
 		c.setNome("CC");
 		c.setTipo("exatas");		
-		CursoService.CadastrarCurso(c);*/
+		CursoService.CadastrarCurso(c);
+		Curso cc = CursoService.buscarCurso(1l);
+		System.out.println(cc.getNome());*/
 		
 		
 		/*Curso c = CursoService.buscarCurso(2l);

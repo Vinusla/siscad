@@ -1,9 +1,10 @@
 package br.com.siscad.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.hibernate.Criteria;
 
 import br.com.siscad.entities.Aluno;
 
@@ -23,7 +24,7 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
 		return Aluno.class;
 	}
 	
-	public Aluno buscarPorLogin(String login){
+	/*public Aluno buscarPorLogin(String login){
 		Aluno aluno = null;
 		try{
 			Query query=manager.createQuery("SELECT id FROM Aluno WHERE login='"+login+"'");
@@ -34,6 +35,22 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
 		}
 		
 		return aluno;
+	}*/
+	
+	public Aluno efetuaLogin(String login, String senha){		
+		Query query = this.getEntityManger().createQuery("select a from Aluno a where a.login = :login and a.senha = :senha");		
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
+		List<Aluno> alunos = query.getResultList();
+		if(!alunos.isEmpty()){	
+			
+			return alunos.get(0);
+		}
+		
+		return null;
+		
 	}
+	
+	
 
 }
